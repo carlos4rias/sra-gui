@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog
+import os
 from config import *
 
 class YoloMark( tk.Frame ):
@@ -32,7 +33,8 @@ class YoloMark( tk.Frame ):
         # Show 
         self.button_folder_images.grid( row = 3, column = 0)
         self.ShowImage()
-        tk.Button( self, text = "Next", command = self.test ).grid( row = 6, column = 0)
+        #tk.Button( self, text = "Cancel", command = self.test ).grid( row = 6, column = 0)
+        tk.Button( self, text = "Next", command = self.Run ).grid( row = 6, column = 0)
 
     def ShowVideo( self ):
         self.button_video_address.grid( row = 4, column = 0 )
@@ -78,6 +80,23 @@ class YoloMark( tk.Frame ):
         self.path_names = filedialog.askopenfilename( initialdir = "/", title = "Select file",
                                         filetypes = (("name files","*.name"), ) )
         print( self.path_names )
+
+    def Run( self ):
+        ##print( self.r.get() + ' ' + self.folder_images + ' ' + self.path_video + ' ' + self.entry_fps.get())
+        if( self.r.get() == "1" ) :
+            if( (not self.folder_images) or (not self.path_train) or (not self.path_names) ):
+                print( "Faltan datos" )
+            else:
+                command = paths['yolo_path'] + ' ' + self.folder_images + ' ' + self.path_train + ' ' + self.path_names 
+                os.system( command )
+                print( "run command ")
+        else:
+            if( (not self.folder_images) or (not self.path_video) or (not self.entry_fps.get()) ):
+                print( "Faltan datos" )
+            else:
+                command = paths['yolo_path'] + ' ' + self.folder_images + ' cap_video ' + self.path_video + ' ' + self.entry_fps.get()
+                os.system( command )
+                print( "run command ")
 
     def test( self ):
         pass
