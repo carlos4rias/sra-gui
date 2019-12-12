@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import font  as tkfont
-from yoloMark import YoloMark
+from YoloMark.yoloMark import YoloMark
 
 class Controller( tk.Tk ):
 

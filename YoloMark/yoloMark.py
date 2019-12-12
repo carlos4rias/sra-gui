@@ -12,6 +12,12 @@ class YoloMark( tk.Frame ):
         # Title
         tk.Label( self, text="Yolo Mark", justify="center", font=controller.title_font ).grid( row = 0, column = 0)
 
+        # variables to path
+        self.folder_images = ''
+        self.path_video = ''
+        self.path_train = ''
+        self.path_names = ''
+
         # For Image and Video
         self.button_folder_images = tk.Button( self, text = "Folder Img", command = self.DialogFolder )
 
@@ -82,7 +88,6 @@ class YoloMark( tk.Frame ):
         print( self.path_names )
 
     def Run( self ):
-        ##print( self.r.get() + ' ' + self.folder_images + ' ' + self.path_video + ' ' + self.entry_fps.get())
         if( self.r.get() == "1" ) :
             if( (not self.folder_images) or (not self.path_train) or (not self.path_names) ):
                 print( "Faltan datos" )
@@ -97,6 +102,3 @@ class YoloMark( tk.Frame ):
                 command = paths['yolo_path'] + ' ' + self.folder_images + ' cap_video ' + self.path_video + ' ' + self.entry_fps.get()
                 os.system( command )
                 print( "run command ")
-
-    def test( self ):
-        pass
