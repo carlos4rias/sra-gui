@@ -1,4 +1,3 @@
-import config
 import tkinter as tk
 from tkinter import filedialog
 
@@ -40,18 +39,21 @@ class Main( tk.Frame ):
         settings_btn = tk.Button(
             frame,
             text = "Configuracion",
-            command = lambda : self.Run('Setting'),
+            command = lambda : self.Run('Configuration'),
         )
 
         left_config_lbl = tk.Label(frame)
-        
-        show_message = not ('darknet' in config.paths) or not ('yolomark' in config.paths)
 
-        if 'darknet' in config.paths:
+        paths = self.controller.config.paths
+        
+        show_message = not ('darknet' in paths)
+        show_message = show_message or (not paths)
+
+        if 'darknet' in paths:
             training_btn["state"] = tk.NORMAL
             run_btn["state"] = tk.NORMAL
         
-        if 'yolomark' in config.paths:
+        if 'yolomark' in paths:
             mark_btn["state"] = tk.NORMAL
 
         if show_message:
@@ -66,7 +68,6 @@ class Main( tk.Frame ):
         mark_btn.grid( row = 1, column = 0, sticky="nsew")
         run_btn.grid( row = 2, column = 0, sticky="nsew")
         settings_btn.grid( row = 3, column = 0, sticky="nsew")
-
 
     def Run(self, window):
         self.controller.show_frame(window)
