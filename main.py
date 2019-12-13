@@ -15,7 +15,7 @@ class Main( tk.Frame ):
         training_btn = tk.Button(
             frame,
             text = "Entrenar",
-            command = lambda : self.Run('Training'),
+            command = lambda : self.Run('Train'),
             state = tk.DISABLED
         )
 
