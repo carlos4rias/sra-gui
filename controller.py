@@ -1,15 +1,16 @@
 import tkinter as tk
-from tkinter import font  as tkfont
-from YoloMark.yoloMark import YoloMark
-from main import Main
-from Configuration.configuration import Configuration
+
 import config
+from Configuration.configuration import Configuration
+from main import Main
+from Run.run import Run
+from Training.train import Train
+from YoloMark.yoloMark import YoloMark
 
 class Controller( tk.Tk ):
 
     def __init__( self, *args, **kwargs ):
         tk.Tk.__init__( self, *args, **kwargs )
-        self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
 
         self.config = config
 
@@ -23,7 +24,7 @@ class Controller( tk.Tk ):
 
     def show_frame( self, page_name_show ):
         '''Show a frame for the given page name'''
-        for F in ( YoloMark, Main, Configuration ):
+        for F in ( YoloMark, Main, Configuration, Train, Run ):
             page_name = F.__name__
             frame = F(parent=self.container, controller=self)
             self.frames[page_name] = frame
