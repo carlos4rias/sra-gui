@@ -45,16 +45,14 @@ class Main( tk.Frame ):
 
         left_config_lbl = tk.Label(frame)
         
-        show_message = True
+        show_message = not ('darknet' in config.paths) or not ('yolomark' in config.paths)
 
         if 'darknet' in config.paths:
             training_btn["state"] = tk.NORMAL
             run_btn["state"] = tk.NORMAL
-            show_message = False
         
         if 'yolomark' in config.paths:
             mark_btn["state"] = tk.NORMAL
-            show_message = False
 
         if show_message:
             left_config_lbl["text"] = "Aun no se han seteado algunas rutas, configuralas en la opcion configuracion"
