@@ -1,2 +1,5 @@
 paths = {}
-paths['yolo_path'] = '/home/diego/Documents/Yolo_mark/yolo_mark'
+
+def add_path(key, path):
+  global paths
+  paths[key] = path
